@@ -1,0 +1,206 @@
+/* --- style.css (Style Unique : Maximal, Plat, Rouge) --- */
+
+/* --- Reset propre --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+/* --- Fond général et conteneur principal (main-page) --- */
+body {
+    background-color: #f7f7f7; /* Gris très clair */
+    color: #333333;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+.main-page {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* --- Bloc central blanc (content-box) --- */
+.content-box {
+    background-color: white;
+    padding: 60px; 
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    width: 90%; 
+    max-width: 900px; /* Grande largeur pour les 4 colonnes */
+}
+
+/* --- Titres --- */
+h1, .titre-commande {
+    font-size: 2.2rem;
+    margin-bottom: 5px;
+    color: #d11f1f; 
+    font-weight: bold;
+}
+
+h2, .sous-titre-commande {
+    font-size: 1.1rem;
+    margin-bottom: 40px;
+    color: #666666;
+}
+
+/* --- Boutons (Général pour index.php) --- */
+.menu-boutons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+a.btn {
+    display: block;
+    background: #d11f1f; /* Rouge Principal */
+    border: none;
+    color: white;
+    text-decoration: none;
+    padding: 15px 20px;
+    margin: 0 auto;
+    width: 100%;
+    border-radius: 0;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: none;
+}
+
+a.btn:hover {
+    background: #a91919; 
+}
+
+/* Boutons secondaires (Retour/Compte) */
+.btn-secondary {
+    background: #cccccc; 
+    color: #333333;
+    border: 1px solid #aaaaaa;
+}
+
+.btn-secondary:hover {
+    background: #a0a0a0;
+    color: white;
+}
+
+
+/* --- Grille des Familles (4 Colonnes pour passer_commande.php) --- */
+.famille-grid {
+    display: grid;
+    /* 4 colonnes égales */
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 15px; 
+    margin-bottom: 30px;
+}
+
+/* --- Style des Cartes de Famille (Plat et simple) --- */
+.famille-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 90px;
+    background: white;
+    border: 2px solid #d11f1f; 
+    border-radius: 0;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    padding: 10px;
+    text-align: center;
+}
+
+.famille-card:hover {
+    background: #f0f0f0; 
+    border-color: #a91919;
+}
+
+/* Cache les cartes vides pour l'exemple */
+.card-placeholder {
+    visibility: hidden; 
+}
+
+/* --- Bouton Retour de la page de commande --- */
+.zone-boutons-retour {
+    margin-top: 30px;
+}
+
+/* --- Styles Spécifiques à la Liste de Produits (produits.php) --- */
+
+/* Ajustement de la boîte principale pour la page produits */
+.content-box-produits {
+    background-color: white;
+    padding: 40px; 
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    width: 90%; 
+    max-width: 1200px; /* Prend encore plus de place */
+}
+
+.produits-list {
+    display: grid;
+    /* 3 colonnes de produits sur les grands écrans */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+/* Style de la carte produit */
+.produit-card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+    border-radius: 0;
+}
+
+.produit-image {
+    width: 100%;
+    max-height: 200px; /* Limite la hauteur de l'image */
+    object-fit: contain;
+    margin-bottom: 15px;
+    border: 1px solid #f0f0f0;
+}
+
+.produit-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.produit-prix {
+    font-size: 1.5rem;
+    color: #d11f1f; /* Prix en rouge vif */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Bouton Ajouter au panier (style principal) */
+.btn-add-to-cart {
+    /* Utilise le style de base du .btn */
+    width: 100%;
+    border: none;
+    background: #d11f1f;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-add-to-cart:hover {
+    background: #a91919;
+}

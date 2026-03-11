@@ -1,0 +1,103 @@
+/* --- CSS de la commande (Style PLAT et Simple - Rouge Supermarché) --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif; /* Police basique */
+}
+
+/* --- Fond général et centrage --- */
+body {
+    background: #f7f7f7; /* Gris très clair */
+    color: #333333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* --- Conteneur principal (main-container) --- */
+.main-container {
+    width: 90%; 
+    max-width: 550px; 
+    background: white;
+    padding: 30px; /* Moins de padding */
+    border-radius: 0; /* Plus de bords arrondis */
+    box-shadow: none; /* Pas d'ombre */
+    text-align: center;
+    border: 1px solid #e0e0e0; /* Bordure simple pour délimiter le bloc */
+}
+
+/* --- Titres --- */
+.titre-1 {
+    font-size: 28px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #d11f1f; /* Rouge Carrefour */
+}
+
+.titre-2 {
+    font-size: 16px;
+    margin-bottom: 30px;
+    color: #666666;
+}
+
+/* --- Grille des Familles (2 Colonnes) --- */
+.famille-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; 
+    margin-bottom: 30px;
+}
+
+/* --- Style des Cartes de Famille (Simplifié) --- */
+.famille-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    height: 90px;
+    background: white;
+    /* Bordure simple rouge, pas de transition, pas d'ombre */
+    border: 2px solid #d11f1f; 
+    border-radius: 0;
+    box-shadow: none;
+}
+
+.famille-card:hover {
+    /* Style au survol sans mouvement */
+    background: #f0f0f0; /* Très léger changement de fond */
+    border-color: #a91919; /* Rouge un peu plus foncé */
+}
+
+.card-name {
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    padding: 10px;
+    text-align: center;
+}
+
+/* --- Boutons de navigation (Retour - Simplifié) --- */
+.zone-boutons-retour {
+    margin-top: 30px;
+}
+
+.bouton-menu.retour-seul {
+    display: inline-block;
+    background: #cccccc; /* Gris plat */
+    color: #333333;
+    border: 1px solid #aaaaaa;
+    padding: 10px 30px;
+    text-decoration: none;
+    border-radius: 0;
+    font-weight: normal;
+    transition: none;
+    box-shadow: none;
+}
+
+.bouton-menu.retour-seul:hover {
+    background: #a0a0a0; /* Gris plus foncé au hover */
+    color: white;
+    transform: none;
+}

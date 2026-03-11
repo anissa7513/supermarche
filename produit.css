@@ -1,0 +1,70 @@
+/* --- Styles Spécifiques à la Liste de Produits (produits.php) --- */
+
+/* Ajustement de la boîte principale pour la page produits */
+.content-box-produits {
+    background-color: white;
+    padding: 40px; 
+    border-radius: 0;
+    box-shadow: none;
+    border: 1px solid #e0e0e0;
+    text-align: center;
+    width: 90%; 
+    max-width: 1200px; /* Prend encore plus de place */
+}
+
+.produits-list {
+    display: grid;
+    /* 3 colonnes de produits sur les grands écrans */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 30px;
+    margin-top: 30px;
+    margin-bottom: 40px;
+}
+
+/* Style de la carte produit */
+.produit-card {
+    border: 1px solid #e0e0e0;
+    padding: 20px;
+    text-align: center;
+    background: #fff;
+    border-radius: 0;
+}
+
+.produit-image {
+    width: 100%;
+    max-height: 200px; /* Limite la hauteur de l'image */
+    object-fit: contain;
+    margin-bottom: 15px;
+    border: 1px solid #f0f0f0;
+}
+
+.produit-name {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.produit-prix {
+    font-size: 1.5rem;
+    color: #d11f1f; /* Prix en rouge vif */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* Bouton Ajouter au panier (style principal) */
+.btn-add-to-cart {
+    /* Utilise le style de base du .btn */
+    width: 100%;
+    border: none;
+    background: #d11f1f;
+    color: white;
+    padding: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.btn-add-to-cart:hover {
+    background: #a91919;
+}
