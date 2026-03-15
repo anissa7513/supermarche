@@ -1,0 +1,117 @@
+<?php
+session_start();
+
+// Connexion à la base de données
+$host = 'localhost';
+$db   = 'super';
+$user = 'root'; 
+$pass = '';     
+$charset = 'utf8mb4';
+
+$dsn = "mysql:host=$host;dbname=$db;charset=$charset";
+$options = [
+    PDO::ATTR_ERR_MODE            => PDO::ERR_MODE_EXCEPTION,
+    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+];
+
+try {
+    $pdo = new PDO($dsn, $user, $pass, $options);
+} catch (\PDOException $e) {
+    die("Erreur de connexion : " . $e->getMessage());
+}
+
+-- 
+
+// --- LOGIQUE DU PANIER ---
+
+// 1. Ajouter un produit (appelé depuis tes boutons "Ajouter au panier")
+if (isset($_POST['add_to_cart'])) {
+    $id = $_POST['id_produit'];
+    // Si le produit est déjà dans le panier, on augmente la quantité
+    if (isset($_SESSION['panier'][$id])) {
+        $_SESSION['panier'][$id]++;
+    } else {
+        $_SESSION['panier'][$id] = 1;
+    }
+}
+
+// 2. Supprimer un produit
+if (isset($_GET['delete'])) {
+    $id_to_delete = $_GET['delete'];
+    unset($_SESSION['panier'][$id_to_delete]);
+    header('Location: panier.php');
+    exit();
+}
+
+// 3. Récupérer les détails des produits du panier
+$produits_panier = [];
+$total_general = 0;
+
+if (!empty($_SESSION['panier'])) {
+    $ids = array_keys($_SESSION['panier']);
+    $clause_in = implode(',', array_fill(0, count($ids), '?'));
+    
+    $stmt = $pdo->prepare("SELECT * FROM produit WHERE id_produit IN ($clause_in)");
+    $stmt->execute($ids);
+    $produits_panier = $stmt->fetchAll();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon Panier</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-page">
+        <div class="content-box-produits">
+            <h1 class="titre-produits">Mon Panier</h1>
+
+            <?php if (empty($produits_panier)): ?>
+                <p>Votre panier est vide.</p>
+                <a href="passer_commande.html" class="btn">Retour aux courses</a>
+            <?php else: ?>
+                <table class="panier-table" style="width:100%; border-collapse: collapse; margin-bottom: 20px;">
+                    <thead>
+                        <tr style="border-bottom: 2px solid #ccc;">
+                            <th>Produit</th>
+                            <th>Prix Unitaire</th>
+                            <th>Quantite</th>
+                            <th>Sous-total</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($produits_panier as $p): 
+                            $quantite = $_SESSION['panier'][$p['id_produit']];
+                            $sous_total = $p['prix'] * $quantite;
+                            $total_general += $sous_total;
+                        ?>
+                        <tr style="border-bottom: 1px solid #eee; text-align: center;">
+                            <td><?php echo $p['nom_produit']; ?></td>
+                            <td><?php echo number_format($p['prix'], 2); ?> €</td>
+                            <td><?php echo $quantite; ?></td>
+                            <td><?php echo number_format($sous_total, 2); ?> €</td>
+                            <td>
+                                <a href="panier.php?delete=<?php echo $p['id_produit']; ?>" style="color: red;">Supprimer</a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <div style="text-align: right; font-size: 1.5em; font-weight: bold; margin-bottom: 20px;">
+                    Total : <?php echo number_format($total_general, 2); ?> €
+                </div>
+
+                <div class="zone-boutons-retour" style="display: flex; justify-content: space-between;">
+                    <a href="passer_commande.html" class="btn btn-secondary">Continuer les achats</a>
+                    <a href="facture.php" target="_blank" class="btn" style="background-color: green; color: white; padding: 10px; text-decoration: none;">Editer la facture (PDF)</a>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</body>
+</html>
